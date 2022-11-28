@@ -45,6 +45,21 @@ app.get('/v1data', async (req, res) => {
     res.status(500).json({error: err.message})
   }
 })
+
+app.get('/northernhemisphere', async (req, res) => {
+  try{
+    const connection = await mysql.createConnection(config.db)
+    const [result,] = await connection.execute('select * from northernhemisphere')
+
+    if(!result) result=[]
+    res.status(200).json(result)
+  }catch(err){
+    res.status(500).json({error: err.message})
+  }
+})
+
+
+
   
   app.get('/api/notes', (req, res) => {
     res.json(notes)

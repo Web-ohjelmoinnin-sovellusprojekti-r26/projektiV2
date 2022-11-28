@@ -20,7 +20,7 @@ function App() {
           "#2a71d0",
         ],
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1,
         parsing: {
           xAxisKey: "time",
           yAxisKey: "value"
@@ -29,7 +29,10 @@ function App() {
     ],
   });
 
-  useEffect(() => {
+
+ 
+/*
+ useEffect(() => {
     async function getV1data(){
       const response = await axios.get('http://localhost:3001/v1data')
       console.log(response)
@@ -46,7 +49,7 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "black",
-            borderWidth: 2,
+            borderWidth: 1,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
@@ -56,6 +59,35 @@ function App() {
       })
     }
     getV1data()
+  }, [])
+*/
+  useEffect(() => {
+    async function getnorthernhemisphere(){
+      const response = await axios.get('http://localhost:3001/northernhemisphere')
+      console.log(response)
+      setUserData({
+        datasets: [
+          {
+            label: "Temperatures",
+            data: response.data, //UserData.map((data) => data.userGain)
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "red",
+            borderWidth: 1,
+            parsing: {
+              xAxisKey: "Time",
+              yAxisKey: "Temperature"
+            }
+          },
+        ],
+      })
+    }
+    getnorthernhemisphere()
   }, [])
 
   const options = {
