@@ -5,10 +5,13 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import 'chartjs-adapter-luxon';
 
+
 function App() {
   const [userDataChart, setUserData] = useState();
-  
+  const [v5Data, setV5Data] = useState();
   const [V6Data, setV6Data] = useState();
+
+
 
  
 
@@ -165,6 +168,35 @@ function App() {
   }, [])
 
   useEffect(() => {
+    async function getV5data(){
+      const responseV5Data = await axios.get('http://localhost:3001/v5data')
+      console.log(responseV5Data)
+      setV5Data({
+        datasets: [
+          {
+            label: "VostokIceCore",
+            data: responseV5Data.data, //UserData.map((data) => data.userGain)
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "black",
+            borderWidth: 1,
+            parsing: {
+              xAxisKey: "time",
+              yAxisKey: "co2"
+            },
+          },        
+        ],
+      })
+    }
+    getV5data()
+  }, [])
+
+useEffect(() => {
     async function getV6data(){
       const responseV6Data = await axios.get('http://localhost:3001/v6data')
       console.log(responseV6Data)
@@ -194,7 +226,7 @@ function App() {
     getV6data()
   }, [])
 
-  const options = {
+ const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -214,7 +246,29 @@ function App() {
     },
   };
 
-  const options3 = {
+  const options2 = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Historical CO2 record from the Vostok ice core",
+      },
+    },
+    scales: {
+      x: {
+        type: "linear",
+        min: 0,
+        max: 419200,
+        display: true,
+        position: "right",
+      },
+    },
+  };
+
+ const options3 = {
     responsive: true,
     plugins: {
       legend: {
@@ -255,6 +309,16 @@ function App() {
         Both V1 (annual and monthly) and V2(Northern hemishpere reconstruction) visualizes temperatures in relation to the time.
         </p>
         <br></br>
+        <h3>V5 Historical CO2 record from the Vostok ice core</h3>
+        <Line options={options2} data={v5Data} />
+        <br></br>
+        <p><a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">V5 description</a><br />
+        <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">V5 dataset source</a></p>
+        <p>
+        V5 chart shows data of Soviet Co2 levels study from Vostok research center located at Antarctica.<br />
+        Data was gathered from deep ice bore holes. Samples contain roughly 400000 years worth of data.
+        </p>
+        <br></br>
         <h3>Ice core composite study CO2 measurement</h3>
         <Line options={options3} data={V6Data} />
         <p>
@@ -262,8 +326,8 @@ function App() {
         </p>
         <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'> V6 Dataset source </a><br />
         <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>V6 Description source</a>
+        </div>
       </div>        
-    </div>
   );
 }
 
