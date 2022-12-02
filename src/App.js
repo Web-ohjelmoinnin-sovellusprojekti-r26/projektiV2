@@ -7,7 +7,8 @@ import 'chartjs-adapter-luxon';
 
 function App() {
   const [userDataChart, setUserData] = useState();
-
+  
+  const [V6Data, setV6Data] = useState();
 
  
 
@@ -147,7 +148,7 @@ function App() {
               "#f3ba2f",
               "#2a71d0",
             ],
-            borderColor: "crimson",
+            borderColor: "cyan",
             borderWidth: 1,
             parsing: {
               xAxisKey: "time",
@@ -161,6 +162,36 @@ function App() {
       })
     }
     getV1data()
+  }, [])
+
+  useEffect(() => {
+    async function getV6data(){
+      const responseV6Data = await axios.get('http://localhost:3001/v6data')
+      console.log(responseV6Data)
+      setV6Data({
+        datasets: [
+          {
+            label: "CO2 concentration",
+            data: responseV6Data.data, //UserData.map((data) => data.userGain)
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "black",
+            borderWidth: 1,
+            parsing: {
+              xAxisKey: "time",
+              yAxisKey: "co2"
+            },
+            //pointRadius: 1,
+          },        
+        ],
+      })
+    }
+    getV6data()
   }, [])
 
   const options = {
@@ -183,6 +214,29 @@ function App() {
     },
   };
 
+  const options3 = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Ice core 800k year composite study CO2 measurements",
+      },
+    },
+    scales: {
+      x: {
+        reverse: true,
+        type: "linear",
+        min: -2000,
+        max: 810000,
+        display: true,
+        position: "right",
+      },
+    },
+  };
+
   if(userDataChart === undefined){
     return null;
   }
@@ -191,7 +245,23 @@ function App() {
   return (
     <div className="App">
       <div style={{ width: 1200 }}>
+      <h3>V1 Global historical surface temperature anomalies from January 1850 onwards</h3>
         <Line options={options} data={userDataChart} />
+        <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>V1 V2 Datasets sources</a><br />
+        <a href='https://www.nature.com/articles/nature03265'>V2 Full study</a>
+        <p>
+        This chart is about global historical surface temperature anomalies from january 1850 onwards...<br />
+        This chart also includes 2,000-Year Northern Hemisphere Temperature(v2) information aswell (cyan line).<br />
+        Both V1 (annual and monthly) and V2(Northern hemishpere reconstruction) visualizes temperatures in relation to the time.
+        </p>
+        <br></br>
+        <h3>Ice core composite study CO2 measurement</h3>
+        <Line options={options3} data={V6Data} />
+        <p>
+        A line graph of atmospheric carbon dioxide concentrations based on a combined study of antarctic ice cores (last 800000 years).
+        </p>
+        <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'> V6 Dataset source </a><br />
+        <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>V6 Description source</a>
       </div>        
     </div>
   );
