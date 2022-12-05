@@ -8,6 +8,7 @@ import 'chartjs-adapter-luxon';
 
 function App() {
   const [userDataChart, setUserData] = useState();
+  const [V3Data, setV3Data] = useState();
   const [v5Data, setV5Data] = useState();
   const [V6Data, setV6Data] = useState();
 
@@ -29,7 +30,7 @@ function App() {
         datasets: [
           {
             label: "TemperaturesGlobalAnnual",
-            data: responseAnnualG.data, //UserData.map((data) => data.userGain)
+            data: responseAnnualG.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -38,16 +39,17 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "black",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
             },
-            //pointRadius: 1,
+            
           },
           {
             label: "TemperaturesNorthernAnnual",
-            data: responseAnnualN.data, //UserData.map((data) => data.userGain)
+            data: responseAnnualN.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -56,16 +58,17 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "blue",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
             },
-            //pointRadius: 1,
+            
           },
           {
             label: "TemperaturesSouthernAnnual",
-            data: responseAnnualS.data, //UserData.map((data) => data.userGain)
+            data: responseAnnualS.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -74,16 +77,17 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "red",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
             },
-            //pointRadius: 1,        
+                    
           },
           {
             label: "TemperatureGlobalMonthly",
-            data: responseMonthlyG.data, //UserData.map((data) => data.userGain)
+            data: responseMonthlyG.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -92,18 +96,19 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "green",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
               
             },
-             //pointRadius: 1,  
+               
           },
 
           {
             label: "TemperatureNorthernMonthly",
-            data: responseMonthlyN.data, //UserData.map((data) => data.userGain)
+            data: responseMonthlyN.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -112,18 +117,19 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "dark blue",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
               
             },
-             //pointRadius: 1,  
+               
           },
 
           {
             label: "TemperatureSouthernMonthly",
-            data: responseMonthlyS.data, //UserData.map((data) => data.userGain)
+            data: responseMonthlyS.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -132,18 +138,19 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "brown",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
               
             },
-             //pointRadius: 1,  
+               
           },
 
           {
             label: "TemperatureReconstruction",
-            data: responseV2Data.data, //UserData.map((data) => data.userGain)
+            data: responseV2Data.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -152,19 +159,69 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "cyan",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "temperature"
               
             },
-             //pointRadius: 1,  
+               
           }
          
         ],
       })
     }
     getV1data()
+  }, [])
+
+  useEffect(() => {
+    async function getV3data(){
+      const responseV3DataMonthly = await axios.get('http://localhost:3001/v3datam')
+      const responseV3DataAnnual = await axios.get('http://localhost:3001/v3data')
+      console.log(responseV3DataAnnual)
+      setV3Data({
+        datasets: [
+          {
+            label: "MaunaLoaCO2Monthly",
+            data: responseV3DataMonthly.data, 
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "red",
+            borderWidth: 1.5,
+            pointRadius: 0,
+            parsing: {
+              xAxisKey: "time",
+              yAxisKey: "co2"
+            },
+          },
+          {
+            label: "MaunaLoaCO2Annual",
+            data: responseV3DataAnnual.data, 
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "blue",
+            borderWidth: 1.5,
+            pointRadius: 0,
+            parsing: {
+              xAxisKey: "time",
+              yAxisKey: "co2"
+            },
+          },
+        ],
+      })
+    }
+    getV3data()
   }, [])
 
   useEffect(() => {
@@ -184,6 +241,8 @@ function App() {
               "#2a71d0",
             ],
             borderColor: "black",
+            borderWidth: 1.5,
+            pointRadius: 0,
             borderWidth: 1,
             parsing: {
               xAxisKey: "time",
@@ -196,6 +255,7 @@ function App() {
     getV5data()
   }, [])
 
+
 useEffect(() => {
     async function getV6data(){
       const responseV6Data = await axios.get('http://localhost:3001/v6data')
@@ -204,7 +264,7 @@ useEffect(() => {
         datasets: [
           {
             label: "CO2 concentration",
-            data: responseV6Data.data, //UserData.map((data) => data.userGain)
+            data: responseV6Data.data, 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -213,12 +273,13 @@ useEffect(() => {
               "#2a71d0",
             ],
             borderColor: "black",
-            borderWidth: 1,
+            borderWidth: 1.5,
+            pointRadius: 0,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "co2"
             },
-            //pointRadius: 1,
+            
           },        
         ],
       })
@@ -239,6 +300,27 @@ useEffect(() => {
     },
     scales: {
       x: {
+        type: "time",
+        display: true,
+        position: "right",
+      },
+    },
+  };
+
+ const options4 = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Atmospheric CO2 concentrations from Mauna Loa",
+      },
+    },
+    scales: {
+      x: {
+        
         type: "time",
         display: true,
         position: "right",
@@ -299,7 +381,7 @@ useEffect(() => {
   return (
     <div className="App">
       <div style={{ width: 1200 }}>
-      <h3>V1 Global historical surface temperature anomalies from January 1850 onwards</h3>
+      <h3>V1+V2 Global historical surface temperature anomalies from January 1850 onwards</h3>
         <Line options={options} data={userDataChart} />
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>V1 V2 Datasets sources</a><br />
         <a href='https://www.nature.com/articles/nature03265'>V2 Full study</a>
@@ -308,6 +390,10 @@ useEffect(() => {
         This chart also includes 2,000-Year Northern Hemisphere Temperature(v2) information aswell (cyan line).<br />
         Both V1 (annual and monthly) and V2(Northern hemishpere reconstruction) visualizes temperatures in relation to the time.
         </p>
+        <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
+        <Line options={options4} data={V3Data} />
+        <a href='https://gml.noaa.gov/ccgg/trends/data.html'> V3 Data source </a><br />
+        <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V3 Data measurement description </a>
         <br></br>
         <h3>V5 Historical CO2 record from the Vostok ice core</h3>
         <Line options={options2} data={v5Data} />
@@ -319,7 +405,7 @@ useEffect(() => {
         Data was gathered from deep ice bore holes. Samples contain roughly 400000 years worth of data.
         </p>
         <br></br>
-        <h3>Ice core composite study CO2 measurement</h3>
+        <h3>V6 Ice core composite study CO2 measurement</h3>
         <Line options={options3} data={V6Data} />
         <p>
         A line graph of atmospheric carbon dioxide concentrations based on a combined study of antarctic ice cores (last 800000 years).
