@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05.12.2022 klo 14:47
+-- Generation Time: 05.12.2022 klo 18:53
 -- Palvelimen versio: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -9748,6 +9748,69 @@ INSERT INTO `v3datam` (`id`, `time`, `co2`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Rakenne taululle `v4data`
+--
+
+CREATE TABLE `v4data` (
+  `ID` int(11) NOT NULL,
+  `timede08` varchar(10) DEFAULT NULL,
+  `co2de08` varchar(10) DEFAULT NULL,
+  `timede082` varchar(10) DEFAULT NULL,
+  `co2de082` varchar(10) DEFAULT NULL,
+  `timedss` varchar(10) DEFAULT NULL,
+  `co2dss` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vedos taulusta `v4data`
+--
+
+INSERT INTO `v4data` (`ID`, `timede08`, `co2de08`, `timede082`, `co2de082`, `timedss`, `co2dss`) VALUES
+(1, '1969', '323.2', '1978', '335.2', '1959', '315.7'),
+(2, '1968', '323.7', '1978', '332', '1954', '313.6'),
+(3, '1965', '319.5', '1975', '331.2', '1954', '314.7'),
+(4, '1965', '318.8', '1973', '328.1', '1954', '314.1'),
+(5, '1963', '318.2', '1971', '324.1', '1948', '311.4'),
+(6, '1962', '318.7', '1970', '325.2', '1939', '309.2'),
+(7, '1962', '317', '1970', '324.7', '1936', '307.9'),
+(8, '1962', '319.4', '1948', '309.9', '1929', '305.2'),
+(9, '1962', '317', '1940', '310.5', '1926', '305'),
+(10, '1953', '311.9', '1934', '309.2', '1905', '299'),
+(11, '1953', '311', '1832', '284.5', '1899', '296.5'),
+(12, '1953', '312.7', NULL, NULL, '1891', '294.7'),
+(13, '1944', '309.7', NULL, NULL, '1845', '286.1'),
+(14, '1939', '311', NULL, NULL, '1825', '285.1'),
+(15, '1938', '310.5', NULL, NULL, '1796', '283.7'),
+(16, '1932', '307.8', NULL, NULL, '1794', '281.6'),
+(17, '1924', '304.8', NULL, NULL, '1777', '279.5'),
+(18, '1924', '304.1', NULL, NULL, '1760', '276.7'),
+(19, '1915', '301.3', NULL, NULL, '1749', '277.2'),
+(20, '1912', '300.7', NULL, NULL, '1747', '276.9'),
+(21, '1905', '296.9', NULL, NULL, '1720', '277.5'),
+(22, '1905', '298.5', NULL, NULL, '1692', '276.5'),
+(23, '1898', '294.7', NULL, NULL, '1679', '275.9'),
+(24, '1892', '294.6', NULL, NULL, '1647', '277.2'),
+(25, '1886', '293.7', NULL, NULL, '1604', '274.3'),
+(26, '1882', '291.9', NULL, NULL, '1589', '278.7'),
+(27, '1877', '288.8', NULL, NULL, '1570', '281.9'),
+(28, '1869', '287.4', NULL, NULL, '1547', '282.8'),
+(29, '1861', '286.6', NULL, NULL, '1527', '283.2'),
+(30, '1854', '284.9', NULL, NULL, '1499', '282.4'),
+(31, '1850', '285.2', NULL, NULL, '1465', '279.6'),
+(32, '1840', '283', NULL, NULL, '1446', '281.7'),
+(33, NULL, NULL, NULL, NULL, '1387', '280'),
+(34, NULL, NULL, NULL, NULL, '1387', '280.4'),
+(35, NULL, NULL, NULL, NULL, '1327', '283.4'),
+(36, NULL, NULL, NULL, NULL, '1246', '281.7'),
+(37, NULL, NULL, NULL, NULL, '1196', '283.9'),
+(38, NULL, NULL, NULL, NULL, '1146', '283.8'),
+(39, NULL, NULL, NULL, NULL, '1096', '282.4'),
+(40, NULL, NULL, NULL, NULL, '1046', '280.3'),
+(41, NULL, NULL, NULL, NULL, '1006', '279.4');
+
+-- --------------------------------------------------------
+
+--
 -- Rakenne taululle `v5data`
 --
 
@@ -12105,6 +12168,12 @@ ALTER TABLE `v3datam`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `v4data`
+--
+ALTER TABLE `v4data`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `v5data`
 --
 ALTER TABLE `v5data`
@@ -12173,6 +12242,12 @@ ALTER TABLE `v3data`
 --
 ALTER TABLE `v3datam`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=777;
+
+--
+-- AUTO_INCREMENT for table `v4data`
+--
+ALTER TABLE `v4data`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `v5data`

@@ -179,6 +179,9 @@ function App() {
     async function getV3data(){
       const responseV3DataMonthly = await axios.get('http://localhost:3001/v3datam')
       const responseV3DataAnnual = await axios.get('http://localhost:3001/v3data')
+      const responseV4DataDE08 = await axios.get('http://localhost:3001/v4data')
+      const responseV4DataDE082 = await axios.get('http://localhost:3001/v4data')
+      const responseV4DataDSS = await axios.get('http://localhost:3001/v4data')
       console.log(responseV3DataAnnual)
       setV3Data({
         datasets: [
@@ -218,6 +221,63 @@ function App() {
               yAxisKey: "co2"
             },
           },
+         
+          {
+            label: "DE08",
+            data: responseV4DataDE08.data, 
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "yellow",
+            borderWidth: 1.5,
+            pointRadius: 0,
+            parsing: {
+              xAxisKey: "timede08",
+              yAxisKey: "co2de08"
+            },
+          },
+
+          {
+            label: "DE082",
+            data: responseV4DataDE082.data, 
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "green",
+            borderWidth: 1.5,
+            pointRadius: 0,
+            parsing: {
+              xAxisKey: "timede082",
+              yAxisKey: "co2de082"
+            },
+          },
+
+          {
+            label: "DSS",
+            data: responseV4DataDSS.data, 
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+            borderColor: "cyan",
+            borderWidth: 1.5,
+            pointRadius: 0,
+            parsing: {
+              xAxisKey: "timedss",
+              yAxisKey: "co2dss"
+            },
+          },
         ],
       })
     }
@@ -243,7 +303,6 @@ function App() {
             borderColor: "black",
             borderWidth: 1.5,
             pointRadius: 0,
-            borderWidth: 1,
             parsing: {
               xAxisKey: "time",
               yAxisKey: "co2"
@@ -386,20 +445,25 @@ useEffect(() => {
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>V1 V2 Datasets sources</a><br />
         <a href='https://www.nature.com/articles/nature03265'>V2 Full study</a>
         <p>
-        This chart is about global historical surface temperature anomalies from january 1850 onwards...<br />
+        This chart is about global historical surface temperature anomalies from january 1850 onwards.<br />
         This chart also includes 2,000-Year Northern Hemisphere Temperature(v2) information aswell (cyan line).<br />
         Both V1 (annual and monthly) and V2(Northern hemishpere reconstruction) visualizes temperatures in relation to the time.
         </p>
-        <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
+        <h3>V3+V4 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
         <Line options={options4} data={V3Data} />
-        <a href='https://gml.noaa.gov/ccgg/trends/data.html'> V3 Data source </a><br />
-        <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V3 Data measurement description </a>
+        <a href='https://gml.noaa.gov/ccgg/trends/data.html'> V3 Datasets sources </a><br />
+        <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V3 Data measurement description </a><br />
+        <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets sources </a><br />
+        <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'>V4 Data measurement description </a>
+        <p>
+        This chart displays CO2 concentrations from Mauna Loa and three ice core datasets from East Antarctica. 
+        </p>
         <br></br>
         <h3>V5 Historical CO2 record from the Vostok ice core</h3>
         <Line options={options2} data={v5Data} />
         <br></br>
         <p><a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">V5 description</a><br />
-        <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">V5 dataset source</a></p>
+        <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">V5 datasets sources</a></p>
         <p>
         V5 chart shows data of Soviet Co2 levels study from Vostok research center located at Antarctica.<br />
         Data was gathered from deep ice bore holes. Samples contain roughly 400000 years worth of data.
