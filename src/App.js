@@ -5,11 +5,14 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import 'chartjs-adapter-luxon';
 
+
 function App() {
   const [userDataChart, setUserData] = useState();
   const [V3Data, setV3Data] = useState();
   const [v5Data, setV5Data] = useState();
   const [V6Data, setV6Data] = useState();
+
+
 
  
 
@@ -252,7 +255,8 @@ function App() {
     getV5data()
   }, [])
 
-  useEffect(() => {
+
+useEffect(() => {
     async function getV6data(){
       const responseV6Data = await axios.get('http://localhost:3001/v6data')
       console.log(responseV6Data)
@@ -283,7 +287,7 @@ function App() {
     getV6data()
   }, [])
 
-  const options = {
+ const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -346,7 +350,7 @@ function App() {
     },
   };
 
-  const options3 = {
+ const options3 = {
     responsive: true,
     plugins: {
       legend: {
@@ -408,8 +412,8 @@ function App() {
         </p>
         <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'> V6 Dataset source </a><br />
         <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>V6 Description source</a>
+        </div>
       </div>        
-    </div>
   );
 }
 
