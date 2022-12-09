@@ -150,7 +150,14 @@ function App() {
 
           {
             label: "TemperatureReconstruction",
-            data: responseV2Data.data, 
+            data: responseV2Data.data.map((d)=>{
+              return{
+              time:d.time.padStart(4,"0"),
+              temperature:d.temperature
+              }
+              
+
+            }), 
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
@@ -439,11 +446,13 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <div style={{ width: 1200 }}>
+      <div className="repsonsive" style={{ width: "100%", margin: "auto" }} >
       <h3>V1+V2 Global historical surface temperature anomalies from January 1850 onwards</h3>
         <Line options={options} data={userDataChart} />
+        <p>
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>V1 V2 Datasets sources</a><br />
         <a href='https://www.nature.com/articles/nature03265'>V2 Full study</a>
+        </p>
         <p>
         This chart is about global historical surface temperature anomalies from january 1850 onwards.<br />
         This chart also includes 2,000-Year Northern Hemisphere Temperature(v2) information aswell (cyan line).<br />
@@ -451,10 +460,12 @@ useEffect(() => {
         </p>
         <h3>V3+V4 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
         <Line options={options4} data={V3Data} />
+        <p>
         <a href='https://gml.noaa.gov/ccgg/trends/data.html'> V3 Datasets sources </a><br />
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V3 Data measurement description </a><br />
         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets sources </a><br />
         <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'>V4 Data measurement description </a>
+        </p>
         <p>
         This chart displays CO2 concentrations from Mauna Loa and three ice core datasets from East Antarctica. 
         </p>
@@ -465,17 +476,20 @@ useEffect(() => {
         <p><a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">V5 description</a><br />
         <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">V5 datasets sources</a></p>
         <p>
-        V5 chart shows data of Soviet Co2 levels study from Vostok research center located at Antarctica.<br />
+        chart shows data of Soviet Co2 levels study from Vostok research center located at Antarctica.<br />
         Data was gathered from deep ice bore holes. Samples contain roughly 400000 years worth of data.
         </p>
         <br></br>
         <h3>V6 Ice core composite study CO2 measurement</h3>
         <Line options={options3} data={V6Data} />
         <p>
-        A line graph of atmospheric carbon dioxide concentrations based on a combined study of antarctic ice cores (last 800000 years).
-        </p>
         <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'> V6 Dataset source </a><br />
         <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>V6 Description source</a>
+        </p>
+        <p>
+        A line graph of atmospheric carbon dioxide concentrations based on a combined study of antarctic ice cores (last 800000 years).
+        </p>
+        
         </div>
       </div>        
   );
