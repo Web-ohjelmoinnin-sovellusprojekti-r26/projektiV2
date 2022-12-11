@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import 'chartjs-adapter-luxon';
+import V7data from "./V7data";
 
 
 function App() {
@@ -489,7 +490,18 @@ useEffect(() => {
         <p>
         A line graph of atmospheric carbon dioxide concentrations based on a combined study of antarctic ice cores (last 800000 years).
         </p>
-        
+        <br></br>
+        <div>
+            <h3>V7 Evolution of global temperature over the past two million years</h3>
+              <V7data/>
+              <p>
+                <a target="_blank" href="http://carolynsnyder.com/publications.php">Dataset Source</a> From there: <i>Source data for Figures</i>
+              </p>
+              <p>
+                <a target="_blank" href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Data Description Document</a>
+              </p>
+              <p>The chart displays the change in global surface temperature and the concentration of co2 ppm over a two million year period in relation to one another. The left y axis tells the co2 ppm and the right y axis tells the temperature change. The x axis tells the time in kilo years; the value starts from left at two million years and shifts right towards the year zero.</p>
+          </div>
         </div>
       </div>        
   );

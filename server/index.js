@@ -169,6 +169,18 @@ app.get('/V5data', async (req, res) => {
   }
 })
 
+app.get('/v7data', async (req, res) => {
+  try{
+    const connection = await mysql.createConnection(config.db)
+    const [result,] = await connection.execute('select * from v7data')
+
+    if(!result) result=[]
+    res.status(200).json(result)
+  }catch(err){
+    res.status(500).json({error: err.message})
+  }
+})
+
   const PORT = 3001
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
