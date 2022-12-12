@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Ilmastonmuutosdatan visualisointityökalu
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ilmastonmuutosdatan visualisointityökalu on Oulun ammattikorkeakoulun 2. vuoden ohjelmistokehityksen opiskelijoiden toteuttama web-sovellus. Tavoitteena oli tehdä ryhmätyönä sovellus, joka esittelee säätiedoista muodostettuja lämpötilagraafeja eri ajanjaksoilta React-tekniikkaa käyttäen. Ajanjaksoja olivat esimerkiksi 65 vuotta, 1 000 vuotta sekä 400 000 vuotta. Sovelluksen tehtävänä oli toimia ilmastonmuutoksen havainnointityökaluna. (Kuva 1.)
+![Kuva1](https://user-images.githubusercontent.com/99176587/207069078-6344b72c-bd2b-438d-8b72-07d50efec8a4.png)
+>**KUVA 1.** HadCrut5 JA Paleoklimatologian tietokeskuksen data
 
-## Available Scripts
+Ryhmään kuului Aleksi Koberg, Milla Korhonen, Sami Kokko sekä Tuomo Karsikas. Varsinaisia rooleja ei ryhmässä jaettu, sillä kaikki olivat vasta aloittaneet ohjelmoinnin. Kaikki ryhmän jäsenet tekivät itse kuitenkin ainakin yhdestä datasetistä kuvaajan sovellukseen. Pääsääntöisesti projektia tehtiin yhteistyöllä, eli kaikki tekivät kaikkea Full Stack -kehittäjinä.
 
-In the project directory, you can run:
+## Työkalut
 
-### `npm start`
+Projektiin käytettiin React-tekniikkaa selaimessa sekä JavaScriptiä ja Node.js:ää palvelimella. Tietokannaksi valittiin MySQL, jota käytettiin phpMyAdmin-käyttöliittymän kautta.
+Sovelluksen arkkitehtuuri muodostuu suurimmilta osin yhdestä App.js-nimisestä tiedostosta, jossa on suurin osa komponenteista. V7-komponentti on erillisenä, sillä ryhmässä haluttiin tehdä projektista hieman selkeämpi. Aikatauluongelmien takia loput komponentit jätettiin ennalleen ja ne löytyvät App.js-tiedostosta. Sovelluksen näyttämä verkkosivu on responsiivinen, eli se skaalautuu ikkunan kokoa muutettaessa.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tietokanta
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Sovelluksella oli tietokanta, jonka sisällä jokaiselle datasetille oli oma taulu (table). Taulut sisältävät JSON-muotoisena datana lämpötiloja, vuosilukuja sekä hiilidioksidipitoisuuksia. Joissakin on vielä tarkemmin mitattuna hiilidioksidin hiukkaspitoisuus. Nimet tauluille on laitettu graafien nimien mukaan, esim. v1data, v3data, v5data jne. Mikäli kuvaajaan tuli useampi datasetti, laitettiin nimien perään joko maailmanlaajuisen (global), kuukausien (monthly), eteläisen (southern) tai pohjoisen (northern) mukaiset kirjaimet g, m, s tai n. Joihinkin tuli myös yhdistelmiä näistä kirjaimista. (Kuva 2.)
 
-### `npm test`
+![Kuva2](https://user-images.githubusercontent.com/99176587/207070362-00d7bcf0-940a-4e3a-be7e-8408adafc7da.png)
+>**KUVA 2.** Tietokanta
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Sovellus internetissä
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Sovellus on julkaistu internetissä julkisessa osoitteessa. Sitä pääsee käyttämään klikkaamalla linkkiä Projektilinkki.fi. Sovellus ei vaadi sisäänkirjautumista tai muitakaan tietoja. Kunkin taulukon yläpuolella on painike jokaiselle piirretylle graafille. Käyttäjä pystyy painikkeita painamalla valitsemaan, mitä graafeja näytetään. Oletuksena sivu piirtää kaikki graafit yhtä aikaa. Graafit on nimetty datasettien sisältöjen mukaisesti, esim. TemperaturesGlobalAnnual-kohta näyttää maailmanlaajuiset vuotuiset lämpötilat, ja TemperaturesGlobalMonthly-kohta näyttää kuukausittaiset maailmanlaajuiset lämpötilat. Taulukkojen alapuolelle on myös laitettu pieni kuvaus graafeista sekä linkit lähteisiin, joita käyttäjä voi klikkaamalla tutkia.
