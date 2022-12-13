@@ -1,6 +1,7 @@
 # Ilmastonmuutosdatan visualisointityökalu
 
 Ilmastonmuutosdatan visualisointityökalu on Oulun ammattikorkeakoulun 2. vuoden ohjelmistokehityksen opiskelijoiden toteuttama web-sovellus. Tavoitteena oli tehdä ryhmätyönä sovellus, joka esittelee säätiedoista muodostettuja lämpötilagraafeja eri ajanjaksoilta React-tekniikkaa käyttäen. Ajanjaksoja olivat esimerkiksi 65 vuotta, 1 000 vuotta sekä 400 000 vuotta. Sovelluksen tehtävänä oli toimia ilmastonmuutoksen havainnointityökaluna. (Kuva 1.)
+
 ![Kuva1](https://user-images.githubusercontent.com/99176587/207069078-6344b72c-bd2b-438d-8b72-07d50efec8a4.png)
 >**KUVA 1.** HadCrut5:sen ja Paleoklimatologian tietokeskuksen data
 
@@ -20,7 +21,13 @@ Sovelluksella oli tietokanta, jonka sisällä jokaiselle datasetille oli oma tau
 
 ## Sovellus internetissä
 
-Sovellus on julkaistu internetissä julkisessa osoitteessa. Sitä pääsee käyttämään klikkaamalla linkkiä [Ilmastonmuutosdata](https://ilmastonmuutos-data.ew.r.appspot.com/). Sovellus ei vaadi sisäänkirjautumista tai muitakaan tietoja. Kunkin taulukon yläpuolella on painike jokaiselle piirretylle graafille. Käyttäjä pystyy painikkeita painamalla valitsemaan, mitä graafeja näytetään. Oletuksena sivu piirtää kaikki graafit yhtä aikaa. Graafit on nimetty datasettien sisältöjen mukaisesti, esim. TemperaturesGlobalAnnual-kohta näyttää maailmanlaajuiset vuotuiset lämpötilat, ja TemperaturesGlobalMonthly-kohta näyttää kuukausittaiset maailmanlaajuiset lämpötilat. Taulukkojen alapuolelle on myös laitettu pieni kuvaus graafeista sekä linkit lähteisiin, joita käyttäjä voi klikkaamalla tutkia.
+Sovellus on julkaistu internetissä julkisessa osoitteessa. Sitä pääsee käyttämään klikkaamalla linkkiä [Ilmastonmuutosdata](https://ilmastonmuutos-data.ew.r.appspot.com/). Sovellus ei vaadi sisäänkirjautumista tai muitakaan tietoja. Kunkin taulukon yläpuolella on painike jokaiselle piirretylle graafille. Käyttäjä pystyy painikkeita painamalla valitsemaan, mitä graafeja näytetään. Oletuksena sivu piirtää kaikki graafit yhtä aikaa. Graafit on nimetty datasettien sisältöjen mukaisesti, esim. TemperaturesGlobalAnnual-kohta näyttää maailmanlaajuiset vuotuiset lämpötilat, ja TemperaturesGlobalMonthly-kohta näyttää kuukausittaiset maailmanlaajuiset lämpötilat. Taulukkojen alapuolelle on myös laitettu pieni kuvaus graafeista sekä linkit lähteisiin, joita käyttäjä voi klikkaamalla tutkia.Sivu toimii myös mobiililaitteilla samassa osoitteessa. (Kuva 3.)
+
+![Screenshot_20221213-170613](https://user-images.githubusercontent.com/99176587/207389346-35cfedf6-34bc-4ad0-88fc-23b3ed92ce21.jpg)
+>**Kuva 3.** Sivu toimii myös mobiililaitteilla
+
+
+
 
 ## Käyttöönotto
-Projektin koodi on mahdollista ladata omalle tietokoneelle ja testata sen toimintaa localhostissa. Tällöin projekti kloonataan GitHubista kokonaisuudessaan ja avataan Visual Studio Codessa. Projektin mukana tulee tietokannan sisältö, joka testaajan tulee siirtää paikalliseen tietokantaan. Tämän jälkeen palvelin laitetaan päälle esim. XAMPP Control Panel-ohjelman kautta. Visual Studio Codeen avataan kaksi terminaalia, joista toisessa siirrytään server-kansioon ja laitetaan komento npm i. Se hakee projektiin kuuluvat riippuvuudet. Tämän jälkeen terminaaliin kirjoitetaan npm run dev. Toiseen terminaaliin kirjoitetaan npm start. Näkyviin pitäisi avautua samanlainen sivu, kuin [projektilinkkiä]https://ilmastonmuutos-data.ew.r.appspot.com/ klikkaamalla.
+Projektin koodi on mahdollista ladata omalle tietokoneelle ja testata sen toimintaa localhostissa. Tällöin projekti kloonataan GitHubista kokonaisuudessaan ja avataan Visual Studio Codessa. Projektin mukana tulee tietokannan sisältö, joka testaajan tulee siirtää paikalliseen tietokantaan. Tämän jälkeen palvelin laitetaan päälle esim. XAMPP Control Panel-ohjelman kautta. Visual Studio Codeen avataan kaksi terminaalia, joista toisessa siirrytään server-kansioon ja kirjoitetaan komento npm run dev. Tämän jälkeen toiseen terminaaliin laitetaan komento npm i. Se hakee projektiin kuuluvat riippuvuudet. Kun haku on valmis, kirjoitetaan npm start. Näkyviin pitäisi avautua samanlainen sivu, kuin [projektilinkkiä](https://ilmastonmuutos-data.ew.r.appspot.com/) klikkaamalla.
